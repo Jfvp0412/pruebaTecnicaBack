@@ -1,23 +1,25 @@
-/** ===================================== script basico =================================
-*	fecha:		24/01/2022
-*	autor:		yonder quispe chura
-*	proyecto:	Prueba crud basico para el canal Code Team.
-* =====================================================================================
-*/
 
-CREATE DATABASE DBpruebaCodeTeam;
-USE DBpruebaCodeTeam;
-
-# -------------tabla tareas--------------------
-CREATE TABLE Tb_Tarea
+CREATE TABLE actividad
 (
-	Id INT AUTO_INCREMENT PRIMARY KEY,
-    Tarea varchar(200),
-    Finalizado bool
+	idActividad INT AUTO_INCREMENT PRIMARY KEY,
+    	nombre varchar(200),
+    	estado bool,
+	fechaEjecucion date,
+	diasRetraso int,
+	FOREIGN KEY (idEmpleado)
+  	REFERENCES `pruebatecnica`.`actividad` (`idEmpleado`)
+);
+CREATE TABLE empleado 
+(
+	idEmpleado INT AUTO_INCREMENT PRIMARY KEY,
+	nombre varchar(200)
 );
 
-/* datos iniciales para la tabla Tarea*/
-insert into Tb_Tarea(Tarea, Finalizado) values('Reunion Diaria | 08:30 am',false);
-insert into Tb_Tarea(Tarea, Finalizado) values('Coordinar reunion con el AreaComenrcial',false);
+/* datos iniciales para la tabla Empleado*/
+insert into empleado(nombre) values('Felipe Vanegas');
+insert into empleado(nombre) values('Karol Vanegas');
 
-select * from Tb_Tarea;
+/* datos iniciales para la tabla Actividad*/
+insert into actividad(nombre,estado, fechaEjecucion, diasRetraso, idEmpleado) values('Actividad1',false, STR_TO_DATE("04-25-2022 15:40:10", "%m-%d-%Y %H:%i:%s"),0,1);
+insert into actividad(nombre,estado, fechaEjecucion, diasRetraso, idEmpleado) values('Actividad2',false, STR_TO_DATE("04-26-2022 15:40:10", "%m-%d-%Y %H:%i:%s"),0,2);
+
